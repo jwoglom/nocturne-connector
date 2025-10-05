@@ -1,5 +1,13 @@
 connector-api:
-    cd src && rm -f connector-api && GOOS=linux GOARCH=arm64 go build -ldflags "-s -w" -o connector-api
+    #!/usr/bin/env bash
+    ALPINE_ARCH="${ALPINE_ARCH:-aarch64}"
+    if [ "$ALPINE_ARCH" = "armv7" ]; then
+        export GOARCH=arm
+        export GOARM=7
+    else
+        export GOARCH=arm64
+    fi
+    cd src && rm -f connector-api && GOOS=linux go build -ldflags "-s -w" -o connector-api
 
 run: connector-api
     sudo ./build.sh
