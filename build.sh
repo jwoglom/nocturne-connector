@@ -8,6 +8,7 @@ set -e
 
 : "${ALPINE_BUILD:="3.21"}"
 : "${ALPINE_BUILD_PATCH:="3"}"
+: "${ALPINE_ARCH:="aarch64"}"
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # System config
