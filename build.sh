@@ -24,7 +24,7 @@ set -e
 : "${SHUTDOWN_SERVICES:="killprocs"}"
 
 : "${SIZE_BOOT:="100M"}"
-: "${SIZE_ROOT:="100M"}"
+: "${SIZE_ROOT:="300M"}"
 
 : "${STAGES:="00 10 20 30 40"}"
 
