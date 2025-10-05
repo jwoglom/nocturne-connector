@@ -26,10 +26,10 @@
 ## Prerequisites
 
 - Raspberry Pi with networking
-  - Pi 1 and 2 are not supported due to the lack of onboard Wi-Fi
-  - Pi Zero 1 (W) is not supported due to the old architecture
+  - Pi 1 and Pi Zero 1 (W) is not supported due to the old architecture
+  - Pi 2 requires custom build instructions, see below
 - SD card
-  - Nocturne Connector is super small (~60 MB), so you have many choices for SD cards
+  - Nocturne Connector is super small (~60 MB for Pi 3+, ~150MB for Pi 2), so you have many choices for SD cards
 - Working Wi-Fi network
 - Car Thing with Nocturne 3.0.0 or later installed
 
@@ -67,6 +67,23 @@ Available recipes:
   lint
   run
 ```
+
+### Raspberry Pi 2 Support
+
+The Pi 2 does not have onboard Wi-Fi, and uses an older ARMv7 32-bit architecture, so support is limited.
+
+However, if you have a compatible Realtek/Mediatek WiFi adapter (e.g., the [CanoKit Wi-Fi USB adapter](https://www.canakit.com/raspberry-pi-wifi.html), included with some Raspberry Pi 2 kits), you can follow these build instructions to create a working image:
+
+1. Start up the qemu-user-static Docker container on your build host (see above)
+2. Invoke build steps specified in the Justfile with environment variables `USB_WIFI_SUPPORT=true ALPINE_ARCH=armv7`:
+
+```
+$ USB_WIFI_SUPPORT=true ALPINE_ARCH=armv7 just run
+```
+
+Then use Raspberry Pi Imager or another image flash tool to write the produced `img.gz` to a MicroSD card, and be sure to connect the USB Wi-Fi adapter.
+
+This method has been tested with Realtek RT2x00 USB adapters, your mileage may vary.
 
 ## Tinkering (Advanced)
 
