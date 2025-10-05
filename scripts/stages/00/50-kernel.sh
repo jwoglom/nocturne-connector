@@ -19,17 +19,19 @@ rmdir "$ROOTFS_PATH"/tempapk
   rm -f boot/System.map-* boot/config-*
 
   rm -rf lib/modules/*/kernel/{arch,sound,security,kernel}
-  find lib/modules/*/kernel/crypto ! -name 'zstd.ko.xz' -exec rm -rf {} + 2> /dev/null
 
   if [ "$USB_WIFI_SUPPORT" = "true" ]; then
+    # Keep all crypto modules for WiFi
     # Keep lib/crc-ccitt.ko for rt2800usb WiFi driver
     find lib/modules/*/kernel/lib ! -name 'crc-ccitt.ko.xz' -type f -exec rm -f {} + 2> /dev/null
   else
+    find lib/modules/*/kernel/crypto ! -name 'zstd.ko.xz' -exec rm -rf {} + 2> /dev/null
     rm -rf lib/modules/*/kernel/lib
   fi
 
   if [ "$USB_WIFI_SUPPORT" = "true" ]; then
-    rm -rf lib/modules/*/kernel/drivers/{ata,auxdisplay,accessibility,base,bcma,block,bluetooth,cdrom,clk,connector,gpu,hid,iio,input,i2c,leds,md,mfd,mmc,mtd,mux,nvmem,pinctrl,pps,rtc,scsi,spi,ssb,staging,uio,vhost,video,w1}
+    # Keep bcma and ssb for Broadcom WiFi support
+    rm -rf lib/modules/*/kernel/drivers/{ata,auxdisplay,accessibility,base,block,bluetooth,cdrom,clk,connector,gpu,hid,iio,input,i2c,leds,md,mfd,mmc,mtd,mux,nvmem,pinctrl,pps,rtc,scsi,spi,staging,uio,vhost,video,w1}
   else
     rm -rf lib/modules/*/kernel/drivers/{ata,auxdisplay,accessibility,base,bcma,block,bluetooth,cdrom,clk,connector,gpu,hid,iio,input,i2c,leds,md,mfd,mmc,mtd,mux,net,nvmem,pinctrl,pps,rtc,scsi,spi,ssb,staging,uio,vhost,video,w1}
   fi
