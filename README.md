@@ -69,7 +69,7 @@ Available recipes:
 
 ### Building for Pi 1, 2, and Zero
 
-The Pi 1, 2, and original Zero doe not have onboard Wi-Fi, and us older 32-bit ARM architectures, so support is limited.
+The Pi 1, 2, and original Zero do not have onboard Wi-Fi, and use older 32-bit ARM architectures, so support is limited.
 
 However, if you have a compatible Realtek/Mediatek WiFi adapter (e.g., the [CanoKit Wi-Fi USB adapter](https://www.canakit.com/raspberry-pi-wifi.html), included with some Raspberry Pi 2 kits), you can follow these build instructions to create a working image:
 
