@@ -16,6 +16,8 @@ set -e
 : "${DEFAULT_HOSTNAME:="nocturne-connector"}"
 : "${DEFAULT_ROOT_PASSWORD:="nocturne"}"
 
+: "${USB_WIFI_SUPPORT:="false"}"
+
 : "${SYSINIT_SERVICES:="devfs dmesg hwdrivers"}"
 : "${BOOT_SERVICES:="sysctl hostname bootmisc modules"}"
 : "${DEFAULT_SERVICES:=""}"
