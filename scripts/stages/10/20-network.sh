@@ -1,6 +1,6 @@
 #!/bin/sh
 
-"$HELPERS_PATH"/chroot_exec.sh apk add wireless-tools wpa_supplicant wpa_supplicant-openrc nftables eudev udev-init-scripts networkmanager networkmanager-cli linux-firmware-brcm networkmanager-wifi
+"$HELPERS_PATH"/chroot_exec.sh apk add wireless-tools wpa_supplicant wpa_supplicant-openrc nftables eudev udev-init-scripts networkmanager networkmanager-cli linux-firmware-brcm linux-firmware-ralink networkmanager-wifi
 
 mkdir -p "$ROOTFS_PATH"/etc/wpa_supplicant
 cat > "$ROOTFS_PATH"/etc/wpa_supplicant/wpa_supplicant.conf << EOF
