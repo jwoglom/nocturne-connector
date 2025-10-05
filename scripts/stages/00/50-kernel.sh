@@ -28,5 +28,9 @@ rmdir "$ROOTFS_PATH"/tempapk
   fi
 
   rm -rf lib/modules/*/kernel/drivers/media/{cec,common,dvb-core,dvb-frontends,i2c,mc,pci,radio,rc,spi,test-drivers,tuners,v4l2-core,platform}
-  rm -rf lib/modules/*/kernel/net/{6lowpan,9p,802,8021q,appletalk,atm,ax25,batman-adv,bluetooth,can,ceph,core,ieee802154,key,l2tp,llc,mpls,mptcp,netrom,nfc,nsh,openvswitch,rose,sched,sctp,vmw_vsock,xfrm}
+  if [ "$USB_WIFI_SUPPORT" = "true" ]; then
+    rm -rf lib/modules/*/kernel/net/{6lowpan,9p,802,8021q,appletalk,atm,ax25,batman-adv,bluetooth,can,ceph,core,ieee802154,key,l2tp,llc,mpls,mptcp,netrom,nfc,nsh,openvswitch,rose,sched,sctp,vmw_vsock,xfrm}
+  else
+    rm -rf lib/modules/*/kernel/net/{6lowpan,9p,802,8021q,appletalk,atm,ax25,batman-adv,bluetooth,can,ceph,core,ieee802154,key,l2tp,llc,mpls,mptcp,netrom,nfc,nsh,openvswitch,rose,sched,sctp,vmw_vsock,wireless,xfrm}
+  fi
 )
