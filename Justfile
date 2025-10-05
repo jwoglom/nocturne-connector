@@ -10,7 +10,7 @@ connector-api:
     cd src && rm -f connector-api && GOOS=linux go build -ldflags "-s -w" -o connector-api
 
 run: connector-api
-    sudo ./build.sh
+    sudo -E ./build.sh
 
 lint:
     pre-commit run --all-files
