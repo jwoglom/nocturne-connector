@@ -26,10 +26,9 @@
 ## Prerequisites
 
 - Raspberry Pi with networking
-  - Pi 1 and Pi Zero 1 (W) is not supported due to the old architecture
-  - Pi 2 requires custom build instructions, see below
+  - Pi 1, Pi Zero 1 (W), and Pi 2 require custom build instructions, see below
 - SD card
-  - Nocturne Connector is super small (~60 MB for Pi 3+, ~150MB for Pi 2), so you have many choices for SD cards
+  - Nocturne Connector is super small (~60 MB for Pi 3+, ~150MB for Pi 1/2/Zero), so you have many choices for SD cards
 - Working Wi-Fi network
 - Car Thing with Nocturne 3.0.0 or later installed
 
@@ -68,11 +67,13 @@ Available recipes:
   run
 ```
 
-### Raspberry Pi 2 Support
+### Building for Pi 1, 2, and Zero
 
-The Pi 2 does not have onboard Wi-Fi, and uses an older ARMv7 32-bit architecture, so support is limited.
+The Pi 1, 2, and original Zero doe not have onboard Wi-Fi, and us older 32-bit ARM architectures, so support is limited.
 
 However, if you have a compatible Realtek/Mediatek WiFi adapter (e.g., the [CanoKit Wi-Fi USB adapter](https://www.canakit.com/raspberry-pi-wifi.html), included with some Raspberry Pi 2 kits), you can follow these build instructions to create a working image:
+
+**Raspberry Pi 2:**
 
 1. Start up the qemu-user-static Docker container on your build host (see above)
 2. Invoke build steps specified in the Justfile with environment variables `USB_WIFI_SUPPORT=true ALPINE_ARCH=armv7`:
@@ -80,6 +81,16 @@ However, if you have a compatible Realtek/Mediatek WiFi adapter (e.g., the [Cano
 ```
 $ USB_WIFI_SUPPORT=true ALPINE_ARCH=armv7 just run
 ```
+
+**Raspberry Pi 1 / Zero:**
+
+1. Start up the qemu-user-static Docker container on your build host (see above)
+2. Invoke build steps specified in the Justfile with environment variables `USB_WIFI_SUPPORT=true ALPINE_ARCH=armhf`:
+
+```
+$ USB_WIFI_SUPPORT=true ALPINE_ARCH=armhf just run
+```
+
 
 Then use Raspberry Pi Imager or another image flash tool to write the produced `img.gz` to a MicroSD card, and be sure to connect the USB Wi-Fi adapter.
 
