@@ -2,7 +2,7 @@
 
 # boot
 cp "$RES_PATH"/config/cmdline.txt "$RES_PATH"/config/config.txt "$BOOTFS_PATH"/
-if [ "$ALPINE_ARCH" = "armv7" ]; then
+if [ "$ALPINE_ARCH" = "armv7" ] || [ "$ALPINE_ARCH" = "armhf" ]; then
   sed -i 's/arm_64bit=1//g' "$BOOTFS_PATH"/config.txt
 fi
 rsync -a "$WORK_PATH"/kernel/boot/ "$BOOTFS_PATH"/

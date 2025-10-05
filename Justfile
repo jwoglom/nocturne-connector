@@ -4,6 +4,9 @@ connector-api:
     if [ "$ALPINE_ARCH" = "armv7" ]; then
         export GOARCH=arm
         export GOARM=7
+    elif [ "$ALPINE_ARCH" = "armhf" ]; then
+        export GOARCH=arm
+        export GOARM=6
     else
         export GOARCH=arm64
     fi
