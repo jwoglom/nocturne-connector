@@ -21,9 +21,9 @@ rmdir "$ROOTFS_PATH"/tempapk
   rm -rf lib/modules/*/kernel/{arch,sound,security,kernel}
 
   if [ "$USB_WIFI_SUPPORT" = "true" ]; then
-    # Keep all crypto modules for WiFi
+    # Keep all crypto modules for WiFi (kernel/crypto and kernel/lib/crypto)
     # Keep lib/crc-ccitt.ko for rt2800usb WiFi driver
-    find lib/modules/*/kernel/lib ! -name 'crc-ccitt.ko.xz' -type f -exec rm -f {} + 2> /dev/null
+    find lib/modules/*/kernel/lib -type f ! -name 'crc-ccitt.ko.xz' ! -path '*/lib/crypto/*' -exec rm -f {} + 2> /dev/null
   else
     find lib/modules/*/kernel/crypto ! -name 'zstd.ko.xz' -exec rm -rf {} + 2> /dev/null
     rm -rf lib/modules/*/kernel/lib
