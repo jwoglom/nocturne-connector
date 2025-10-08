@@ -1,6 +1,6 @@
 #!/bin/sh
 
-IMG_NAME="nocturne-connector_${CONNECTOR_IMAGE_VERSION}"
+IMG_NAME="nocturne-connector_${CONNECTOR_IMAGE_VERSION}_${ALPINE_ARCH}"
 
 rm -f "$OUTPUT_PATH"/"$IMG_NAME".img.gz "$OUTPUT_PATH"/"$IMG_NAME".img.gz.sha256
 pigz -c "$IMAGE_PATH"/sdcard.img > "$OUTPUT_PATH"/"$IMG_NAME".img.gz
